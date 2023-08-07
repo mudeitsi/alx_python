@@ -15,8 +15,4 @@ def fibonacci_sequence(n):
     
     return fib_sequence
 
-# Test the function
-n = int(input("Enter the value of n: "))
-result = fibonacci_sequence(n)
-print("The first", n, "Fibonacci numbers:", result)
 
