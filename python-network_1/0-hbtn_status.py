@@ -1,20 +1,15 @@
-#!usr/bin/python3
-import requests
-
-def fetch_and_display_status(url):
-    try:
-        response = requests.get(url)
-        response.raise_for_status()
-
-        print("Status:")
-        print("\t- Response Code:", response.status_code)
-        print("\t- Body:")
-        print("\t\t", response.text)
-    except requests.exceptions.RequestException as e:
-        print("An error occurred:", e)
-
-if __name__ == "__main__":
-    url = "https://alu-intranet.hbtn.io/status"
-    fetch_and_display_status(url)
+#!/usr/bin/python3
+"""A script that
+fetches https://alu-intranet.hbtn.io/status.
+"""
 
 
+if __name__ == '__main__':
+    import urllib.request
+
+    with urllib.request.urlopen('https://alu-intranett.hbtn.io/status') as resp:
+        content = resp.read()
+        print("Body response:")
+        print("\t- type: {}".format(type(content)))
+        print("\t- content: {}".format(content))
+        print("\t- utf8 content: {}".format(content.decode('utf-8')))
