@@ -1,13 +1,22 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
+"""
+This module fetches the status from 'https://alu-intranet.hbtn.io/status'
+using the requests package and prints the response content with proper tabulation.
+"""
+
 import requests
 
-url = 'https://alu-intranet.hbtn.io/status'
-response = requests.get(url)
+def fetch_status():
+    """
+    Fetches the status from the specified URL and prints the response.
+    """
+    url = 'https://alu-intranet.hbtn.io/status'
+    response = requests.get(url)
 
-if response.status_code == 200:
-    data = response.json()
-    for key, value in data.items():
-        print("\t- {}: {}".format(key, value))
-else:
-    print("Failed to retrieve the data. Status code:", response.status_code)
+    print("Body response:")
+    print("\t- type: {}".format(type(response.text)))
+    print("\t- content: {}".format(response.text))
+
+if __name__ == "__main__":
+    fetch_status()
 
