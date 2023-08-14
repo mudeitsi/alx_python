@@ -11,15 +11,17 @@ def fetch_and_display_x_request_id(url):
         if x_request_id:
             print("Value of X-Request-Id:", x_request_id)
         else:
-            print("X-Request-Id header not found in the response.")
+            print("X-Request-Id not found in the response headers.")
 
     except requests.exceptions.RequestException as e:
         print("An error occurred:", e)
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Usage: python script.py <url>")
-    else:
-        url = sys.argv[1]
-        fetch_and_display_x_request_id(url)
+    urls = [
+        "http://0.0.0.0:5050",
+        "http://0.0.0.0:5050",
+        "http://0.0.0.0:5050"
+    ]
 
+    for url in urls:
+        fetch_and_display_x_request_id(url)
