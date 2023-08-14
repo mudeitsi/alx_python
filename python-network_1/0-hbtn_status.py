@@ -1,15 +1,13 @@
 #!/usr/bin/python3
-"""A script that
-fetches https://alu-intranet.hbtn.io/status.
-"""
+import requests
 
+url = 'https://alu-intranet.hbtn.io/status'
+response = requests.get(url)
 
-if __name__ == '__main__':
-    import urllib.request
+if response.status_code == 200:
+    data = response.json()
+    for key, value in data.items():
+        print("\t- {}: {}".format(key, value))
+else:
+    print("Failed to retrieve the data. Status code:", response.status_code)
 
-    with urllib.request.urlopen('https://alu-intranett.hbtn.io/status') as resp:
-        content = resp.read()
-        print("Body response:")
-        print("\t- type: {}".format(type(content)))
-        print("\t- content: {}".format(content))
-        print("\t- utf8 content: {}".format(content.decode('utf-8')))
