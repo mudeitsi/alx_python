@@ -1,13 +1,18 @@
 import requests
 
-url = 'https://alu-intranet.hbtn.io/status'
-response = requests.get(url)
+def fetch_and_display_status(url):
+    try:
+        response = requests.get(url)
+        response.raise_for_status()
 
-if response.status_code == 200:
-    data = response.json()
-    print("Body response:")
-    print("\t- type:", type(data))
-    print("\t- content:", data)
-else:
-    print("Error: Unable to fetch data from the URL. Status code:", response.status_code)
+        print("Status:")
+        print("\t- Response Code:", response.status_code)
+        print("\t- Body:")
+        print("\t\t", response.text)
+    except requests.exceptions.RequestException as e:
+        print("An error occurred:", e)
+
+if __name__ == "__main__":
+    url = "https://alu-intranet.hbtn.io/status"
+    fetch_and_display_status(url)
 
