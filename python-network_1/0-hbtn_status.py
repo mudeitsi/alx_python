@@ -1,14 +1,13 @@
-#!usr/bin/python3
-import requests
+#!/usr/bin/python3
+"""Fetches https://intranet.hbtn.io/status."""
+import urllib.request
 
-url = 'https://alu-intranet.hbtn.io/status'
-response = requests.get(url)
 
-if response.status_code == 200:
-    data = response.json()
-    print("Body response:")
-    print("\t- type:", type(data))
-    print("\t- content:", data)
-else:
-    print("Error: Unable to fetch data from the URL. Status code:", response.status_code)
-
+if __name__ == "__main__":
+    request = urllib.request.Request("https://intranet.hbtn.io/status")
+    with urllib.request.urlopen(request) as response:
+        body = response.read()
+        print("Body response:")
+        print("\t- type: {}".format(type(body)))
+        print("\t- content: {}".format(body))
+        print("\t- utf8 content: {}".format(body.decode("utf-8")))
