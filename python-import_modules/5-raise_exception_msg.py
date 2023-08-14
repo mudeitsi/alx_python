@@ -1,3 +1,3 @@
-def raise_exception():
-    raise TypeError("A type exception has been raised.")
+def raise_exception_msg(message=""):
+    raise NameError(message)
 
