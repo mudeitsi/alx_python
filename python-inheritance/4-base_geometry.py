@@ -1,10 +1,14 @@
-#!/usr/bin/python3
-"""Defines a base geometry class BaseGeometry."""
-
+#!/usr/bin/Python3
 
 class BaseGeometry:
-    """Represent base geometry."""
+    """BaseGeometry Class"""
+
+    def __dir__(self) -> None:
+        """This will control inherited attribute access"""
+        attributes = super().__dir__()
+        return [
+            attribute for attribute in attributes if attribute != "__init_subclass__"
+        ]
 
     def area(self):
-        """Not implemented."""
         raise Exception("area() is not implemented")
